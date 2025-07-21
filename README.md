@@ -1,95 +1,115 @@
-# Extractor de Correos de Seguidores de Instagram
+# Instagram Follower Email Extractor
 
-**AVISO IMPORTANTE**: Este proyecto es solo para fines educativos y de investigación. El uso de este software para extraer datos de manera masiva de Instagram va en contra de los Términos de Servicio de Instagram. Este repositorio es privado y no debe compartirse públicamente.
+> ⚠️ **WARNING!**: This project is for educational and research purposes only. Using this software for mass data extraction from Instagram violates Instagram's Terms of Service.
 
-## Descripción
+---
 
-Esta herramienta automatiza el proceso de identificación de correos electrónicos asociados a perfiles de Instagram que siguen a un usuario específico. Utiliza técnicas de web scraping a través de Selenium para:
+## Description
 
-1. Iniciar sesión en Instagram usando credenciales proporcionadas
-2. Navegar al perfil objetivo
-3. Extraer la lista de seguidores
-4. Visitar cada perfil de seguidor
-5. Buscar correos electrónicos en sus biografías
-6. Guardar los resultados en formato CSV
+This tool automates the process of identifying email addresses associated with Instagram profiles that follow a specific user. It utilizes web scraping techniques via Selenium to:
 
-## Estructura del Repositorio
+1.  Log in to Instagram using provided credentials.
+2.  Navigate to the target profile.
+3.  Extract the follower list.
+4.  Visit each follower's profile.
+5.  Search for email addresses in their bios.
+6.  Save the results in CSV format.
 
-- **ExtractorCorreosInstagram.py**: Script principal con toda la lógica de extracción de datos
-- **requirements.txt**: Archivo de dependencias (Selenium)
-- **seguidores.txt**: Almacena la lista de nombres de usuario de seguidores
-- **emails_encontrados.txt**: Guarda los correos encontrados durante la ejecución
-- **instagram_emails.csv**: Archivo CSV con resultados (usuario, correo, URL de perfil)
+---
 
-## Funcionalidades
+## Repository Structure
 
-- **Inicio de sesión automático**: Maneja cookies y formularios de login
-- **Extracción de seguidores**: Desplazamiento automático para cargar todos los seguidores
-- **Detección de correos**: Algoritmos avanzados para identificar correos en diferentes formatos:
-  - Correos estándar (ejemplo@dominio.com)
-  - Correos con protección anti-bots ([at], (at), arroba, etc.)
-  - Correos con prefijos (email:, correo:, etc.)
-- **Gestión de límites**: Pausas aleatorias para evitar bloqueos
-- **Manejo de errores**: Capturas de pantalla automáticas al detectar problemas
+-   **ExtractorCorreosInstagram.py**: Main script containing all data extraction logic.
+-   **requirements.txt**: Dependency file (Selenium).
+-   **seguidores.txt**: Stores the list of follower usernames.
+-   **emails_encontrados.txt**: Saves emails found during execution.
+-   **instagram_emails.csv**: CSV file with results (username, email, profile URL).
 
-## Requisitos
+---
 
-- Python 3.6+
-- Selenium
-- Chrome para testing (Chrome WebDriver)
+## Features
 
-## Instalación
+-   **Automatic Login**: Handles cookies and login forms.
+-   **Follower Extraction**: Automatic scrolling to load all followers.
+-   **Email Detection**: Advanced algorithms to identify emails in various formats:
+    -   Standard emails (example@domain.com)
+    -   Anti-bot protected emails ([at], (at), arroba, etc.)
+    -   Emails with prefixes (email:, correo:, etc.)
+-   **Rate Limiting**: Random pauses to prevent blocking.
+-   **Error Handling**: Automatic screenshots upon detecting issues.
 
-1. Clona este repositorio
-2. Crea un entorno virtual:
-   ```
-   python -m venv venv
-   ```
-3. Activa el entorno virtual:
-   - Windows: `venv\Scripts\activate`
-   - Linux/Mac: `source venv/bin/activate`
-4. Instala las dependencias:
-   ```
-   pip install -r requirements.txt
-   ```
-5. Descarga e instala Chrome WebDriver:
-   - Visita https://chromedriver.chromium.org/downloads o https://googlechromelabs.github.io/chrome-for-testing/
-   - Descarga la versión de ChromeDriver que coincida exactamente con tu versión de Chrome
-   - Debes descargar con nombre de la columna Binary -> chrome
-   - Para verificar tu versión de Chrome, abre Chrome y ve a: ⋮ > Ayuda > Acerca de Google Chrome
-   - Descomprime el archivo descargado y guarda el ejecutable en una ubicación conocida
-   - Debes añadir la ruta absoluta hasta el chrome.exe
-   - Esta ruta del ejecutable es la que deberás proporcionar al ejecutar el script
+---
 
-## Uso
+## Requirements
 
-1. Ejecuta el script principal:
-   ```
-   python ExtractorCorreosInstagram.py
-   ```
-2. Introduce tu nombre de usuario y contraseña de Instagram
-3. Proporciona la URL del perfil cuyos seguidores deseas analizar
-4. Indica la ruta completa al ejecutable de Chrome WebDriver
+-   Python 3.6+
+-   Selenium
+-   Chrome for testing (Chrome WebDriver)
 
-## Archivos de Salida
+---
 
-- **instagram_emails.csv**: Contiene tres columnas: Username, Email, Profile URL
-- **seguidores.txt**: Lista simple de nombres de usuario de seguidores
-- **emails_encontrados.txt**: Correos encontrados en formato "usuario: correo@ejemplo.com"
+## Installation
 
-## Advertencias Legales
+1.  Clone this repository.
+2.  Create a virtual environment:
+    ```bash
+    python -m venv venv
+    ```
+3.  Activate the virtual environment:
+    -   Windows: `venv\Scripts\activate`
+    -   Linux/Mac: `source venv/bin/activate`
+4.  Install dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+5.  Download and install Chrome WebDriver:
+    -   Visit https://chromedriver.chromium.org/downloads or https://googlechromelabs.github.io/chrome-for-testing/
+    -   Download the Chrome WebDriver version that exactly matches your Chrome browser version.
+    -   You should download the binary from the "chrome" column.
+    -   To verify your Chrome version, open Chrome and go to: ⋮ > Help > About Google Chrome.
+    -   Unzip the downloaded file and save the executable to a known location.
+    -   You must provide the absolute path to the `chrome.exe` (or `chromedriver` executable on Linux/Mac).
+    -   This executable path is what you will need to provide when running the script.
 
-- Este software solo debe usarse con perfiles donde tengas permiso explícito del propietario
-- La extracción masiva de datos va contra los términos de servicio de Instagram
-- El uso indebido puede resultar en la suspensión de tu cuenta de Instagram
-- El autor no se hace responsable del mal uso de esta herramienta
+---
 
-## Limitaciones
+## Usage
 
-- Instagram puede detectar comportamientos automatizados y bloquear la sesión
-- La herramienta está limitada a procesar 100 perfiles por ejecución para evitar restricciones
-- No todos los usuarios tienen correos visibles en sus perfiles
+1.  Execute the main script:
+    ```bash
+    python ExtractorCorreosInstagram.py
+    ```
+2.  Enter your Instagram username and password.
+3.  Provide the URL of the profile whose followers you wish to analyze.
+4.  Specify the full path to the Chrome WebDriver executable.
 
-## Notas Técnicas
+---
 
-El script utiliza técnicas de espera, pausas aleatorias y simulación de comportamiento humano para reducir la probabilidad de detección como bot. Sin embargo, no hay garantía de que Instagram no detecte la actividad automatizada. 
+## Output Files
+
+-   **instagram_emails.csv**: Contains three columns: Username, Email, Profile URL.
+-   **seguidores.txt**: A simple list of follower usernames.
+-   **emails_encontrados.txt**: Found emails in "username: email@example.com" format.
+
+---
+
+## Legal Disclaimers
+
+-   This software should only be used with profiles where you have explicit permission from the owner.
+-   Mass data extraction violates Instagram's Terms of Service.
+-   Misuse may result in the suspension of your Instagram account.
+-   The author is not responsible for any misuse of this tool.
+
+---
+
+## Limitations
+
+-   Instagram may detect automated behavior and block the session.
+-   The tool is limited to processing 100 profiles per execution to mitigate restrictions.
+-   Not all users have visible emails in their profiles.
+
+---
+
+## Technical Notes
+
+The script employs waiting techniques, random pauses, and human-like behavior simulation to reduce the likelihood of bot detection. However, there is no guarantee that Instagram will not detect automated activity.
