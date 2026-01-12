@@ -124,6 +124,8 @@ __pypackages__/
 celerybeat-schedule
 celerybeat.pid
 
+node_modules
+
 # SageMath parsed files
 *.sage.py
 
@@ -172,3 +174,4 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+images/

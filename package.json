@@ -1,0 +1,27 @@
+{
+  "name": "privado-ig-follower-email-extractor",
+  "version": "1.0.0",
+  "description": "> ⚠️ **WARNING!**: This project is for educational and research purposes only. Using this software for mass data extraction from Instagram violates Instagram's Terms of Service.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/R4F405/PRIVADO-ig-follower-email-extractor.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/R4F405/PRIVADO-ig-follower-email-extractor/issues"
+  },
+  "homepage": "https://github.com/R4F405/PRIVADO-ig-follower-email-extractor#readme",
+  "dependencies": {
+    "chrome-launcher": "^1.2.1",
+    "csv-writer": "^1.6.0",
+    "dotenv": "^17.2.3",
+    "prompt-sync": "^4.2.0",
+    "puppeteer-core": "^24.35.0"
+  }
+}

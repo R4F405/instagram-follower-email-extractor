@@ -1,115 +1,111 @@
-# Instagram Follower Email Extractor
+# Detector de Emails de Seguidores de Instagram (Node.js)
 
-> ⚠️ **WARNING!**: This project is for educational and research purposes only. Using this software for mass data extraction from Instagram violates Instagram's Terms of Service.
-
----
-
-## Description
-
-This tool automates the process of identifying email addresses associated with Instagram profiles that follow a specific user. It utilizes web scraping techniques via Selenium to:
-
-1.  Log in to Instagram using provided credentials.
-2.  Navigate to the target profile.
-3.  Extract the follower list.
-4.  Visit each follower's profile.
-5.  Search for email addresses in their bios.
-6.  Save the results in CSV format.
+> ⚠️ **¡ADVERTENCIA!**: Este proyecto es solo para fines educativos y de investigación. El uso de este software para la extracción masiva de datos podría violar los Términos de Servicio de Instagram. Úsalo bajo tu propia responsabilidad.
 
 ---
 
-## Repository Structure
+## 📝 Descripción
 
--   **ExtractorCorreosInstagram.py**: Main script containing all data extraction logic.
--   **requirements.txt**: Dependency file (Selenium).
--   **seguidores.txt**: Stores the list of follower usernames.
--   **emails_encontrados.txt**: Saves emails found during execution.
--   **instagram_emails.csv**: CSV file with results (username, email, profile URL).
+Esta herramienta automatizada permite extraer correos electrónicos públicos de los perfiles que siguen a una cuenta específica de Instagram.
+Ha sido **completamente reescrita en Node.js y Puppeteer** para ofrecer mayor estabilidad y un comportamiento más "humano" que las versiones anteriores basadas en Python/Selenium.
 
----
-
-## Features
-
--   **Automatic Login**: Handles cookies and login forms.
--   **Follower Extraction**: Automatic scrolling to load all followers.
--   **Email Detection**: Advanced algorithms to identify emails in various formats:
-    -   Standard emails (example@domain.com)
-    -   Anti-bot protected emails ([at], (at), arroba, etc.)
-    -   Emails with prefixes (email:, correo:, etc.)
--   **Rate Limiting**: Random pauses to prevent blocking.
--   **Error Handling**: Automatic screenshots upon detecting issues.
+El script realiza los siguientes pasos:
+1.  Inicia sesión en Instagram automáticamente (o gestiona sesiones existentes).
+2.  Navega al perfil objetivo.
+3.  Abre la lista de seguidores y realiza un **scroll inteligente** para cargar todos los usuarios.
+4.  Visita cada perfil extraído individualmente.
+5.  Busca direcciones de correo electrónico en la biografía.
+6.  Guarda los resultados en formatos CSV y TXT.
 
 ---
 
-## Requirements
+## ✨ Características Principales
 
--   Python 3.6+
--   Selenium
--   Chrome for testing (Chrome WebDriver)
+-   **🚀 Detección Automática de Chrome**: No necesitas descargar `chromedriver` manualmente. El script detecta tu instalación local de Chrome.
+-   **🖱️ Scroll Infinito Robusto**: Nuevo algoritmo de scroll que detecta cargas dinámicas y evita atascos comunes en listas largas de seguidores.
+-   **🤖 Comportamiento Humano**: Simulación de tipeo, movimientos de ratón y tiempos de espera aleatorios para evitar bloqueos por parte de Instagram.
+-   **📧 Extracción Inteligente de Emails**: Detecta múltiples formatos de correo en las biografías.
+-   **⚙️ Configuración Flexible**: Admite credenciales vía archivo `.env`, argumentos de línea de comandos o entrada interactiva.
 
 ---
 
-## Installation
+## 📋 Requisitos Previos
 
-1.  Clone this repository.
-2.  Create a virtual environment:
+-   **Node.js** (Versión 14 o superior).
+-   **Google Chrome** instalado en tu sistema.
+
+---
+
+## 🛠️ Instalación
+
+1.  **Clonar el repositorio** (si aún no lo has hecho):
     ```bash
-    python -m venv venv
+    git clone <url-del-repositorio>
+    cd PRIVADO-ig-follower-email-extractor
     ```
-3.  Activate the virtual environment:
-    -   Windows: `venv\Scripts\activate`
-    -   Linux/Mac: `source venv/bin/activate`
-4.  Install dependencies:
+
+2.  **Instalar dependencias**:
+    Ejecuta el siguiente comando en la terminal para instalar Puppeteer y otras librerías necesarias:
     ```bash
-    pip install -r requirements.txt
+    npm install
     ```
-5.  Download and install Chrome WebDriver:
-    -   Visit https://chromedriver.chromium.org/downloads or https://googlechromelabs.github.io/chrome-for-testing/
-    -   Download the Chrome WebDriver version that exactly matches your Chrome browser version.
-    -   You should download the binary from the "chrome" column.
-    -   To verify your Chrome version, open Chrome and go to: ⋮ > Help > About Google Chrome.
-    -   Unzip the downloaded file and save the executable to a known location.
-    -   You must provide the absolute path to the `chrome.exe` (or `chromedriver` executable on Linux/Mac).
-    -   This executable path is what you will need to provide when running the script.
 
----
-
-## Usage
-
-1.  Execute the main script:
-    ```bash
-    python ExtractorCorreosInstagram.py
+3.  **Configurar variables de entorno (Opcional pero recomendado)**:
+    Crea un archivo `.env` en la raíz del proyecto y añade tus credenciales para evitar escribirlas cada vez:
+    ```env
+    IG_USERNAME=tu_usuario_de_instagram
+    IG_PASSWORD=tu_contraseña
+    TARGET_URL=https://www.instagram.com/cuenta_a_analizar/
+    MAX_PROFILES=500 # Opcional: Limite de perfiles a analizar (borrar para sin limite)
     ```
-2.  Enter your Instagram username and password.
-3.  Provide the URL of the profile whose followers you wish to analyze.
-4.  Specify the full path to the Chrome WebDriver executable.
 
 ---
 
-## Output Files
+## 🚀 Uso
 
--   **instagram_emails.csv**: Contains three columns: Username, Email, Profile URL.
--   **seguidores.txt**: A simple list of follower usernames.
--   **emails_encontrados.txt**: Found emails in "username: email@example.com" format.
+Tienes tres formas de ejecutar el script:
+
+### Opción 1: Usando archivo `.env` (Recomendado)
+Si ya configuraste el archivo `.env`, implemente ejecuta:
+```bash
+node scraper.js
+```
+
+### Opción 2: Modo Interactivo
+Si no configuras nada, el script te preguntará los datos al iniciarse:
+```bash
+node scraper.js
+```
+*Seguir las instrucciones en pantalla.*
+
+### Opción 3: Argumentos de Línea de Comandos
+Puedes pasar los datos directamente al comando (útil para scripts):
+```bash
+node scraper.js <usuario> <contraseña> <url_target>
+```
 
 ---
 
-## Legal Disclaimers
+## 📂 Archivos de Salida
 
--   This software should only be used with profiles where you have explicit permission from the owner.
--   Mass data extraction violates Instagram's Terms of Service.
--   Misuse may result in the suspension of your Instagram account.
--   The author is not responsible for any misuse of this tool.
+El script generará los siguientes archivos en la carpeta del proyecto:
 
----
-
-## Limitations
-
--   Instagram may detect automated behavior and block the session.
--   The tool is limited to processing 100 profiles per execution to mitigate restrictions.
--   Not all users have visible emails in their profiles.
+-   **`instagram_emails.csv`**: Archivo principal con los resultados estructurados. Columnas: `Username`, `Email`, `Profile URL`.
+-   **`seguidores.txt`**: Lista simple con todos los nombres de usuario extraídos.
+-   **`emails_encontrados.txt`**: Archivo de texto rápido con formato `usuario: email`.
 
 ---
 
-## Technical Notes
+## ⚠️ Notas y Limitaciones
 
-The script employs waiting techniques, random pauses, and human-like behavior simulation to reduce the likelihood of bot detection. However, there is no guarantee that Instagram will not detect automated activity.
+-   **Límite de Seguridad**: Por defecto, el script analiza los primeros **100 seguidores** para evitar bloqueos agresivos. Puedes modificar este límite en el código (`scraper.js`) bajo tu propio riesgo.
+-   **Emails Públicos**: La herramienta solo puede extraer emails que estén escritos textualmente en la biografía pública del usuario. No extrae emails del botón "Contacto" si este está oculto o requiere interacción móvil específica.
+-   **Bloqueos Temporales**: Si abusas de la herramienta, Instagram puede bloquear temporalmente tu cuenta o pedir verificaciones. Se recomienda usar una cuenta secundaria para realizar el scraping.
+
+---
+
+## ⚖️ Aviso Legal
+
+Este software se proporciona "tal cual", sin garantía de ningún tipo. El autor no se hace responsable del mal uso de esta herramienta ni de las consecuencias que pueda tener sobre tu cuenta de Instagram.
+
+**¡Sé responsable y ético!**
